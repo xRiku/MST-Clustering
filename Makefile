@@ -5,17 +5,11 @@ BIN		:= bin
 SRC		:= src
 INCLUDE	:= include
 
-LIBRARIES	:=
-
-ifeq ($(OS),Windows_NT)
-EXECUTABLE	:= trab1.exe
-SOURCEDIRS	:= $(SRC)
-INCLUDEDIRS	:= $(INCLUDE)
-else
 EXECUTABLE	:= trab1
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
-endif
+
+VALGRIND := valgrind ./$(EXECUTABLE)
 
 CINCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
 
@@ -35,3 +29,9 @@ run: all
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES)
+
+val: all
+	$(VALGRIND)
+
+full: all
+	- $(VALGRIND) -v --leak-check=full
