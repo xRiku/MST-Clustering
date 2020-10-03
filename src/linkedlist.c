@@ -1,7 +1,7 @@
 #include "../include/linkedlist.h"
 
 struct item {
-    void *element;
+    Point *element;
     struct item *next;
 };
 
@@ -19,21 +19,20 @@ List* createList() {
     return l;
 }
 
-Item* createItem(void *element) {
+Item* createItem(Point *element) {
     Item *item = malloc(sizeof(Item));
     item->element = element;
     item->next = NULL;
     return item;
 }
 
-void pushToList(List *list, void *element) {
+void pushToList(List *list, Point *element) {
+    Item *item = createItem(element);
     if (list->head == NULL) {
-        Item *item = createItem(element);
         list->head = item;
         list->tail = list->head;
         list->length = 1;
     } else {
-        Item *item = createItem(element);
         list->tail->next = item;
         list->tail = item;
         list->length += 1;
@@ -41,10 +40,15 @@ void pushToList(List *list, void *element) {
 }
 
 void deleteList(List *list) {
-    Item *p = list->head;
+    Item *p = NULL;
     for (int i = 0; i < list->length; i += 1) {
+        if(i == 0){
+            p = list->head;
+        }
         list->head = list->head->next;
+        // freePoint(*(p->element)); // Talvez precise ou não dar free nos pontos. Anyway, qualquer coisa ta aqui.
         free(p);
+
         p = list->head;
     }
 }
