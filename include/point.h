@@ -9,10 +9,10 @@ typedef struct p{
     int m;
 }Point;
 
-Point createPoint(char* id, int m, double* mValues);
+Point *createPoint(char* id, int m, double* mValues);
 
-void freePoint(Point point);
+void freePoint(Point *point);
 
-void printPoint(Point point);
+void printPoint(Point *point);
 
 #endif

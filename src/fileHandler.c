@@ -44,9 +44,9 @@ List* fileToPoint(FILE* input){
 		for (int i = 0; i < m; i++){
 			mValues[i] = atof(strtok(NULL, ","));
 		}
-		Point newPoint = createPoint(id, m, mValues);
+		Point *newPoint = createPoint(id, m, mValues);
 
-		pushToList(points, &newPoint);
+		pushToList(points, newPoint);
 
 		free(line);
 	}
