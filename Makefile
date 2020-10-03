@@ -16,7 +16,7 @@ CINCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
 SOURCES		:= $(wildcard $(patsubst %,%/*.c, $(SOURCEDIRS)))
 OBJECTS		:= $(SOURCES:.c=.o)
 
-all: $(EXECUTABLE)
+all: clean $(EXECUTABLE)
 
 .PHONY: clean
 clean:

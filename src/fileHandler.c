@@ -1,19 +1,35 @@
 #include "../include/fileHandler.h"
 
-Point* fileToPoint(FILE* input){
-    char *line;
-	long unsigned int n = 0;
+char *readNewLine(FILE* input){
+	char *line;
+	long unsigned int n = 0;		
 	getline(&line, &n, input);
+	return line;
+}
+
+int countPointDimension(FILE *input){
+	char *line = readNewLine(input);
 	int m = 0;
 	strtok(line, ","); // Ignorar o identificador
 	while(strtok(NULL, ",") != NULL){
 		m++;
 	}
-	printf("%d\n", m);
 	free(line);
 	rewind(input);
-	//while (!feof(input)){
-		
-	//}
+
+	return m;
+}
+
+
+Point* fileToPoint(FILE* input){
+	rewind(input); // just in case
+
+    int m = countPointDimension(input);
+	printf("%d", m);
+
+	while (!feof(input)){
+		char *line = readNewLine(input);
+		 // TODO
+	}
 	return NULL;
 }

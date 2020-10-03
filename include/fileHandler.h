@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Point* fileToPoint(FILE* input);
+Point* fileToPoint(FILE *);
+
+char *readNewLine(FILE* );
+
+int countPointDimension(FILE *);
 
 #endif
