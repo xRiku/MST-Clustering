@@ -24,11 +24,11 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Erro ao criar %s\n", argv[1]);
 		exit(1);
 	}
-	fclose(input);
-	fclose(output);
-
 	printList(points);
 
 	deleteList(points);
+
+	fclose(input);
+	fclose(output);
 	return (0);
 }

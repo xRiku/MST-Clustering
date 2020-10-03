@@ -52,5 +52,5 @@ List* fileToPoint(FILE* input){
 	}
 	free(line);
 	
-	return NULL;
+	return points;
 }
