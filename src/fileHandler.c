@@ -2,7 +2,7 @@
 #include <string.h>
 #include <strings.h>
 char *readNewLine(FILE* input){
-	char *line;
+	char *line = NULL;
 	long unsigned int n = 0;		
 	getline(&line, &n, input);
 	return line;
@@ -28,35 +28,29 @@ Point* fileToPoint(FILE* input){
 
     int m = countPointDimension(input);
 
+	char *line = NULL;
 	while (!feof(input)){
-		char *line = readNewLine(input);
+		line = readNewLine(input);
 		if(strcmp(line, "") == 0){ // Chegou no final do arquivo
 			break;
 		}
 		char *id;
 		double *mValues = malloc(sizeof(double) * m);
 
-		// strtok aparentemente modifica a string original, ao invés de retornar a parte dela até a vírgula
-		// se não fosse por isso, o código abaixo devia funcionar, mas nem tudo na vida são flores
-		// TODO: Arrumar essa aberração abaixo
 		id = strtok(line, ",");
-		
 		for (int i = 0; i < m; i++){
 			double buffer;
 			if(i != (m-1)){
-				buffer = atof(strtok(line, ","));
+				buffer = atof(strtok(NULL, ","));
 			}else{
-				buffer = atof(strtok(line, "\n"));
+				buffer = atof(strtok(NULL, "\n"));
 			}
 			mValues[i] = buffer;
 		}
-
-		for (int i = 0; i < m; i++){
-			printf("%.2f", mValues[i]);
-		}
+		free(mValues); // Remover esse free dps
 		free(line);
-		free(mValues);
 	}
+	free(line);
 	
 	return NULL;
 }
