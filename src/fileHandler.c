@@ -39,14 +39,9 @@ Point* fileToPoint(FILE* input){
 
 		id = strtok(line, ",");
 		for (int i = 0; i < m; i++){
-			double buffer;
-			if(i != (m-1)){
-				buffer = atof(strtok(NULL, ","));
-			}else{
-				buffer = atof(strtok(NULL, "\n"));
-			}
-			mValues[i] = buffer;
+			mValues[i] = atof(strtok(NULL, ","));
 		}
+
 		free(mValues); // Remover esse free dps
 		free(line);
 	}
