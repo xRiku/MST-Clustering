@@ -13,4 +13,6 @@ Point createPoint(char* id, int m, double* mValues);
 
 void freePoint(Point point);
 
+void printPoint(Point point);
+
 #endif

@@ -1,4 +1,5 @@
 #include "../include/point.h"
+#include <stdio.h>
 
 Point createPoint(char* id, int m, double* mValues){
     Point point;
@@ -15,4 +16,14 @@ Point createPoint(char* id, int m, double* mValues){
 void freePoint(Point point){
     free(point.id);
     free(point.mValues);
+}
+
+void printPoint(Point point){
+    printf("Id: %s\n", point.id);
+    for (int i = 0; i < point.m; i++)
+    {
+        printf("%lf ", point.mValues[i]);
+    }
+    printf("\n");
+    
 }
