@@ -56,3 +56,16 @@ void deleteList(List *list) {
 int listLength(List *list) {
     return list->length;
 }
+
+void printList(List *){
+    Item *p = NULL;
+    for (int i = 0; i < list->length; i += 1) {
+        if(i == 0){
+            p = list->head;
+        }
+        list->head = list->head->next;
+        // print point
+
+        p = list->head;
+    }
+}
