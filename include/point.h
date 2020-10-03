@@ -4,12 +4,12 @@
 #include <string.h>
 
 typedef struct p{
-    char* name;
+    char* id;
     double* mValues;
     int m;
 }Point;
 
-Point createPoint(char* name, int m, double* mValues);
+Point createPoint(char* id, int m, double* mValues);
 
 void freePoint(Point point);
 
