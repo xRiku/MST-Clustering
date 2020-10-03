@@ -51,21 +51,21 @@ void deleteList(List *list) {
 
         p = list->head;
     }
+    free(list);
 }
 
 int listLength(List *list) {
     return list->length;
 }
 
-void printList(List * list){
+void printList(List *list){
+
     Item *p = NULL;
     for (int i = 0; i < list->length; i += 1) {
         if(i == 0){
             p = list->head;
         }
-        list->head = list->head->next;
         printPoint(p->element);
-
-        p = list->head;
+        p = p->next;
     }
 }
