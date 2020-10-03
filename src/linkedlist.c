@@ -46,7 +46,7 @@ void deleteList(List *list) {
             p = list->head;
         }
         list->head = list->head->next;
-        // freePoint(*(p->element)); // Talvez precise ou não dar free nos pontos. Anyway, qualquer coisa ta aqui.
+        freePoint(*(p->element)); // Talvez precise ou não dar free nos pontos. Anyway, qualquer coisa ta aqui.
         free(p);
 
         p = list->head;
@@ -57,14 +57,14 @@ int listLength(List *list) {
     return list->length;
 }
 
-void printList(List *){
+void printList(List * list){
     Item *p = NULL;
     for (int i = 0; i < list->length; i += 1) {
         if(i == 0){
             p = list->head;
         }
         list->head = list->head->next;
-        // print point
+        printPoint(*(p->element));
 
         p = list->head;
     }

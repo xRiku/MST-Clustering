@@ -1,10 +1,11 @@
 #ifndef __FILE_READ__
 #define __FILE_READ__
-#include "point.h"
+
+#include "linkedlist.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-Point* fileToPoint(FILE *);
+List* fileToPoint(FILE *);
 
 char *readNewLine(FILE* );
 

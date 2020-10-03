@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/point.h"
 #include "../include/fileHandler.h"
+#include "../include/linkedlist.h"
 
 int main(int argc, char **argv)
 {
@@ -17,7 +18,8 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Erro ao abrir %s\n", argv[1]);
 		exit(1);
 	}
-	fileToPoint(input);
+	List *points = fileToPoint(input);
+
 	if(output == NULL){
 		fprintf(stderr, "Erro ao criar %s\n", argv[1]);
 		exit(1);
@@ -25,5 +27,8 @@ int main(int argc, char **argv)
 	fclose(input);
 	fclose(output);
 
+	printList(points);
+
+	deleteList(points);
 	return (0);
 }

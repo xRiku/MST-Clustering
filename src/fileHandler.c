@@ -1,6 +1,7 @@
-#include "../include/fileHandler.h"
 #include <string.h>
 #include <strings.h>
+#include "../include/fileHandler.h"
+
 char *readNewLine(FILE* input){
 	char *line = NULL;
 	long unsigned int n = 0;		
@@ -23,10 +24,12 @@ int countPointDimension(FILE *input){
 }
 
 
-Point* fileToPoint(FILE* input){
+List* fileToPoint(FILE* input){
 	rewind(input); // just in case
 
     int m = countPointDimension(input);
+
+	List *points = createList();
 
 	char *line = NULL;
 	while (!feof(input)){
@@ -41,8 +44,10 @@ Point* fileToPoint(FILE* input){
 		for (int i = 0; i < m; i++){
 			mValues[i] = atof(strtok(NULL, ","));
 		}
+		Point newPoint = createPoint(id, m, mValues);
 
-		free(mValues); // Remover esse free dps
+		pushToList(points, &newPoint);
+
 		free(line);
 	}
 	free(line);
