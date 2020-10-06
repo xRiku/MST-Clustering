@@ -4,8 +4,8 @@
 #include "linkedlist.h"
 
 typedef struct distCell{
-	char *p1;
-	char *p2;
+	Point *p1;
+	Point *p2;
 	double dist;
 } distCell;
 

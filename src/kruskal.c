@@ -8,8 +8,8 @@
 distCell distBetweenPoints(Point *p1, Point *p2){
     distCell resultCell;
     double result = EuclideanDist(p1->mValues, p2->mValues, p1->m);
-    resultCell.p1 = p1->id;
-    resultCell.p2 = p2->id;
+    resultCell.p1 = p1;
+    resultCell.p2 = p2;
     resultCell.dist = result;
     return resultCell;
 }
@@ -19,7 +19,7 @@ int calcDistN(int N){
 }
 
 void printDistCell(distCell *x){
-    printf("P1: %s\nP2: %s\n", x->p1, x->p2);
+    printf("P1: %s\nP2: %s\n", x->p1->id, x->p2->id);
     printf("Dist: %lf\n", x->dist);
 }
 
