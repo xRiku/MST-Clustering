@@ -19,7 +19,7 @@ int calcDistN(int N){
 }
 
 void printDistCell(distCell *x){
-    printf("P1: %s\nP2: %s\n", x->p1->id, x->p2->id);
+    printf("P1: %s Set: %p\nP2: %s Set: %p\n", x->p1->id, UFFind(x->p1), x->p2->id, UFFind(x->p2));
     printf("Dist: %lf\n", x->dist);
 }
 
@@ -84,4 +84,17 @@ distCell *distanceVector(List *pointList){
     sortDists(vector, N);
 
     return vector;
+}
+
+void kruskalK(distCell *distVect, int N, int k){
+    int qtdComps = N;
+    for(int i = 0; i < N; i++){
+        if(qtdComps == k - 1){
+            break;
+        }
+        if(UFFind(distVect[i].p1) != UFFind(distVect[i].p2)){
+            UFUnion(distVect[i].p1, distVect[i].p2);
+            qtdComps--;
+        }
+    }
 }

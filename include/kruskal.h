@@ -19,4 +19,6 @@ void printDistanceVector(distCell *x, int N);
 
 distCell *distanceVector(List *pointList);
 
+void kruskalK(distCell *distVect, int N, int k);
+
 #endif

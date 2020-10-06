@@ -1,4 +1,5 @@
 #include "../include/point.h"
+#include "../include/unionFind.h"
 #include <stdio.h>
 
 Point *createPoint(char* id, int m, double* mValues){
@@ -23,6 +24,7 @@ void printPoint(Point *point){
     {
         printf("%lf ", point->mValues[i]);
     }
+    printf("Set: %p", UFFind(point));
     printf("\n");
     
 }
