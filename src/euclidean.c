@@ -1,5 +1,5 @@
+#include <math.h>
 #include "../include/euclidean.h"
-#include "math.h"
 
 double EuclideanDist(double *coord1, double *coord2, int m){
     double acc = 0;

@@ -28,7 +28,7 @@ run: all
 	./$(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES)
+	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES) -lm
 
 val: all
 	$(VALGRIND)
