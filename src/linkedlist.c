@@ -1,16 +1,5 @@
 #include "../include/linkedlist.h"
 
-struct item {
-    Point *element;
-    struct item *next;
-};
-
-struct list {
-    Item *head;
-    Item *tail;
-    int length;
-};
-
 List* createList() {
     List *l = malloc(sizeof(List));
     l->head = NULL;

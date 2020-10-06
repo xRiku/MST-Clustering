@@ -9,6 +9,17 @@ typedef struct item Item;
 
 typedef struct list List;
 
+struct item {
+    Point *element;
+    struct item *next;
+};
+
+struct list {
+    Item *head;
+    Item *tail;
+    int length;
+};
+
 List* createList();
 
 Item* createItem(Point *);
