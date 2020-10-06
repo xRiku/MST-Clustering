@@ -19,7 +19,7 @@ int calcDistN(int N){
 }
 
 void printDistCell(distCell *x){
-    printf("P1: %s Set: %p\nP2: %s Set: %p\n", x->p1->id, UFFind(x->p1), x->p2->id, UFFind(x->p2));
+    printf("P1: %s Set: %s\nP2: %s Set: %s\n", x->p1->id, UFFind(x->p1)->id, x->p2->id, UFFind(x->p2)->id);
     printf("Dist: %lf\n", x->dist);
 }
 
