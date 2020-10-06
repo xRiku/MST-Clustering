@@ -1,6 +1,7 @@
 #include "../include/kruskal.h"
 #include "../include/point.h"
 #include "../include/euclidean.h"
+#include "../include/unionFind.h"
 #include <stdio.h>
 #include <stdlib.h>
 

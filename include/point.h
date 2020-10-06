@@ -7,6 +7,7 @@ typedef struct p{
     char* id;
     double* mValues;
     int m;
+    struct p* set;
 }Point;
 
 Point *createPoint(char* id, int m, double* mValues);

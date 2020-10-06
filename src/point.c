@@ -7,6 +7,7 @@ Point *createPoint(char* id, int m, double* mValues){
     point->id = malloc((1 + strlen(id)) * sizeof(char));
     strcpy(point->id, id);
     point->mValues = mValues;
+    point->set = point;
     return point;
 }
 
