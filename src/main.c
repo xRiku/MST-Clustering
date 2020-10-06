@@ -4,6 +4,7 @@
 #include "../include/point.h"
 #include "../include/fileHandler.h"
 #include "../include/linkedlist.h"
+#include "../include/kruskal.h"
 
 int main(int argc, char **argv)
 {
@@ -19,12 +20,18 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 	List *points = fileToPoint(input);
+	int N = points->length;
 
 	if(output == NULL){
 		fprintf(stderr, "Erro ao criar %s\n", argv[1]);
 		exit(1);
 	}
-	printList(points);
+	// printList(points);
+	distMatrix dists = DistanceMatrix(points);
+
+	printDistanceMatrix(dists, N);
+
+	freeDistanceMatrix(dists, N);
 
 	deleteList(points);
 
