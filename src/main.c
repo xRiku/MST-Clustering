@@ -26,12 +26,12 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Erro ao criar %s\n", argv[1]);
 		exit(1);
 	}
-	// printList(points);
-	distMatrix dists = DistanceMatrix(points);
 
-	printDistanceMatrix(dists, N);
+	distCell *dists = distanceVector(points);
 
-	freeDistanceMatrix(dists, N);
+	printDistanceVector(dists, N);
+
+	free(dists);
 
 	deleteList(points);
 

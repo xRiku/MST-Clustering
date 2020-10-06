@@ -9,17 +9,14 @@ typedef struct distCell{
 	double dist;
 } distCell;
 
-typedef distCell** distMatrix;
-
-
 distCell distBetweenPoints(Point *p1, Point *p2);
 
-void printDistanceMatrix(distMatrix matrix, int N);
+int calcDistN(int N);
 
-distMatrix newDistanceMatrix(int N);
+void printDistCell(distCell *x);
 
-void freeDistanceMatrix(distMatrix matrix, int N);
+void printDistanceVector(distCell *x, int N);
 
-distMatrix DistanceMatrix(List *pointList);
+distCell *distanceVector(List *pointList);
 
 #endif
