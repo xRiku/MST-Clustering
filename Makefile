@@ -25,7 +25,7 @@ clean:
 
 
 run: all
-	./$(EXECUTABLE)
+	./$(EXECUTABLE) entradas/0.txt 3 saidas/0.txt
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES) -lm
