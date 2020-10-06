@@ -5,11 +5,13 @@ BIN		:= bin
 SRC		:= src
 INCLUDE	:= include
 
+PROGARGS	:= entradas/0.txt 3 saidas/0.txt
+
 EXECUTABLE	:= trab1
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
 
-VALGRIND := valgrind ./$(EXECUTABLE)
+VALGRIND	:= 
 
 CINCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
 
@@ -25,13 +27,13 @@ clean:
 
 
 run: all
-	./$(EXECUTABLE) entradas/0.txt 3 saidas/0.txt
+	./$(EXECUTABLE) $(PROGARGS)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES) -lm
 
 val: all
-	$(VALGRIND)
+	valgrind ./$(EXECUTABLE) $(PROGARGS)
 
 full: all
-	- $(VALGRIND) -v --leak-check=full
+	- valgrind -v --leak-check=full ./$(EXECUTABLE) $(PROGARGS)
