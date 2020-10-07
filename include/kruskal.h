@@ -21,6 +21,6 @@ distCell *distanceVector(List *pointList);
 
 void sortDists(distCell *list, int size);
 
-void kruskalK(distCell *distVect, int N, int k);
+void kruskalK(distCell *distVect, int size, int N, int k);
 
 #endif

@@ -82,9 +82,9 @@ distCell *distanceVector(List *pointList){
     return vector;
 }
 
-void kruskalK(distCell *distVect, int N, int k){
+void kruskalK(distCell *distVect, int size, int N, int k){
     int qtdComps = N;
-    for(int i = 0; qtdComps != k && i < N; i++){
+    for(int i = 0; qtdComps != k && i < size; i++){
         if(UFFind(distVect[i].p1) != UFFind(distVect[i].p2)){
             UFUnion(distVect[i].p1, distVect[i].p2);
             qtdComps--;

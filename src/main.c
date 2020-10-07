@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 
 	sortDists(dists, distVectorSize);
 
-	kruskalK(dists, distVectorSize, k);
+	kruskalK(dists, distVectorSize, N, k);
 	
 	printDistanceVector(dists, N);
 
