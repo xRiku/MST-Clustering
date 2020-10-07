@@ -43,9 +43,7 @@ int distComparator(const void *d1, const void *d2){
     }
 }
 
-void sortDists(distCell *list, int N){
-    int size = calcDistN(N);
-
+void sortDists(distCell *list, int size){
     qsort((void *)list, size, (sizeof(list[0])), distComparator);
 }
 
@@ -80,8 +78,6 @@ distCell *distanceVector(List *pointList){
             vector[j] = distBetweenPoints(p1, p2);
         }
     }
-
-    sortDists(vector, N);
 
     return vector;
 }

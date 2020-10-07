@@ -27,8 +27,14 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
+	int distVectorSize = calcDistN(points->length);
+	
 	distCell *dists = distanceVector(points);
-	kruskalK(dists, calcDistN(points->length), k);
+
+	sortDists(dists, distVectorSize);
+
+	kruskalK(dists, distVectorSize, k);
+	
 	printDistanceVector(dists, N);
 
 	free(dists);
