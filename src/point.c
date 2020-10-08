@@ -65,3 +65,11 @@ int comparePointId(const void *p1, const void *p2){
     return strcmp(val1, val2);
     
 }
+
+void deletePointVector(Point **x, int size){
+    for (int i = 0; i < size; i++)
+    {
+        freePoint(x[i]);
+    }
+    free(x);
+}

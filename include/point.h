@@ -23,4 +23,6 @@ void setPointSet(Point *point, Point *set);
 
 int comparePointId(const void *p1, const void *p2);
 
+void deletePointVector(Point **x, int size);
+
 #endif

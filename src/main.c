@@ -41,16 +41,9 @@ int main(int argc, char **argv)
 
 	Point **pointsVector = linkedListToVector(points);
 
+	//Função de agrupar aqui
 
-
-	// Temporário
-	for (int i = 0; i < N; i++)
-	{
-		freePoint(pointsVector[i]);
-	}
-
-	free(pointsVector);
-	
+	deletePointVector(pointsVector, N);
 
 	fclose(input);
 	fclose(output);
