@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/grouping.h"
+#include "../include/unionFind.h"
 
 int comparePointGroup(const void *x, const void *y){
     Point *p1 = *((Point **) x);
     Point *p2 = *((Point **) y);
 
-    char *p1SetId = getPointId(getPointSet(p1));
-    char *p2SetId = getPointId(getPointSet(p2));
+    char *p1SetId = getPointId(UFFind(p1));
+    char *p2SetId = getPointId(UFFind(p2));
 
     int compIdSet = strcmp(p1SetId, p2SetId); // Essa comparação ta cagando
     if(compIdSet != 0){
