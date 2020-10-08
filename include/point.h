@@ -21,4 +21,6 @@ Point *getPointSet(Point *point);
 
 void setPointSet(Point *point, Point *set);
 
+int comparePointId(const void *p1, const void *p2);
+
 #endif

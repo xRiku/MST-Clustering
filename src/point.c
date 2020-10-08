@@ -1,6 +1,7 @@
 #include "../include/point.h"
 #include "../include/unionFind.h"
 #include <stdio.h>
+#include <string.h>
 
 struct p{
     char* id;
@@ -54,4 +55,13 @@ Point *getPointSet(Point *point) {
 
 void setPointSet(Point *point, Point *set){
     point->set = set;
+}
+
+
+int comparePointId(const void *p1, const void *p2){
+    char *val1 = ((Point*)p1)->id;
+    char *val2 = ((Point*)p2)->id;
+    
+    return strcmp(val1, val2);
+    
 }
