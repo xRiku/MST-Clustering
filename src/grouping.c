@@ -4,19 +4,18 @@
 #include "../include/grouping.h"
 
 int comparePointGroup(const void *x, const void *y){
-    Point *p1 = ((Point*)x);
-    Point *p2 = ((Point*)y);
+    Point *p1 = *((Point **) x);
+    Point *p2 = *((Point **) y);
+
     char *p1SetId = getPointId(getPointSet(p1));
     char *p2SetId = getPointId(getPointSet(p2));
 
     int compIdSet = strcmp(p1SetId, p2SetId);
-    printf("Comparando %s e %s", p1SetId, p2SetId);
     if(compIdSet != 0){
         return compIdSet;
     }else{
         char *p1Id = getPointId(p1);
         char *p2Id = getPointId(p2);
-        printf("Comparando %s e %s", p1Id, p2Id);
         return strcmp(p1Id, p2Id);
     }
 }
@@ -26,5 +25,6 @@ void groupAndPrint(Point **list, int size){
     // ta dando segfault aqui
     qsort(list, size, (sizeof(list[0])), comparePointGroup);
 
-    // printPointVector(list, size);
+    // printf("\n%p\n", (Point *)list[1]);
+    printPointVector(list, size);
 }
