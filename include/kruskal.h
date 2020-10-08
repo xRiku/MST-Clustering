@@ -19,10 +19,10 @@ void sortDists(distCell *list, int size);
 
 void kruskalK(distCell *distVect, int size, int N, int k);
 
-Point *getPoint1(distCell *distVect);
+Point *getPoint1(distCell);
 
-Point *getPoint2(distCell *distVect);
+Point *getPoint2(distCell);
 
-double getDistance(distCell *distVect);
+double getDistance(distCell);
 
 #endif

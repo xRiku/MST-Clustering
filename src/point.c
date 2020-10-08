@@ -6,7 +6,7 @@ struct p{
     char* id;
     double* mValues;
     int m;
-    struct p* set;
+    Point *set;
 };
 
 Point *createPoint(char* id, int m, double* mValues){
@@ -37,21 +37,21 @@ void printPoint(Point *point){
 
 
 double *getPointCoordinates(Point *point) {
-  return point->mValues;
+    return point->mValues;
 }
 
 int getPointDimension(Point *point) {
-  return point->m;
+    return point->m;
 }
 
 char *getPointId(Point *point) {
-  return point->id;
+    return point->id;
 }
 
 Point *getPointSet(Point *point) {
-  return point->set;
+    return point->set;
 }
 
-void copyPoint(Point *point1, Point *point2) {
-  point1 = point2;
+void setPointSet(Point *point, Point *set){
+    point->set = set;
 }

@@ -99,3 +99,15 @@ void kruskalK(distCell *distVect, int size, int N, int k){
         }
     }
 }
+
+Point *getPoint1(distCell x){
+    return x.p1;
+}
+
+Point *getPoint2(distCell x){
+    return x.p2;
+}
+
+double getDistance(distCell x){
+    return x.dist;
+}

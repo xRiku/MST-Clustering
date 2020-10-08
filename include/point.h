@@ -19,6 +19,6 @@ char *getPointId(Point *point);
 
 Point *getPointSet(Point *point);
 
-void copyPoint(Point *point1, Point *point2);
+void setPointSet(Point *point, Point *set);
 
 #endif
