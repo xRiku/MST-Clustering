@@ -25,4 +25,6 @@ int comparePointId(const void *p1, const void *p2);
 
 void deletePointVector(Point **x, int size);
 
+void printPointVector(Point **x, int size);
+
 #endif

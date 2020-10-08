@@ -66,6 +66,13 @@ int comparePointId(const void *p1, const void *p2){
     
 }
 
+void printPointVector(Point **x, int size){
+    for (int i = 0; i < size; i++)
+    {
+        printPoint(x[i]);
+    }
+}
+
 void deletePointVector(Point **x, int size){
     for (int i = 0; i < size; i++)
     {
