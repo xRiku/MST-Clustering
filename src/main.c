@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
 	free(dists);
 
-	Point **pointsVector = linkedListToVector(points, N);
+	Point **pointsVector = linkedListToVector(points);
 
 
 

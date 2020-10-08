@@ -60,8 +60,8 @@ void printList(List *list){
 }
 
 
-Point** linkedListToVector(List * list, int N){
-    Point **vector = (Point **)malloc(sizeof(Point *) * N);
+Point** linkedListToVector(List * list){
+    Point **vector = (Point **)malloc(sizeof(Point *) * list->length);
 
     Item *p = NULL;
     for (int i = 0; i < list->length; i++) {

@@ -32,6 +32,6 @@ void printList(List *);
 
 int listLength(List *);
 
-Point** linkedListToVector(List * list, int N);
+Point** linkedListToVector(List * list);
 
 #endif
