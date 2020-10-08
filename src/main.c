@@ -35,11 +35,22 @@ int main(int argc, char **argv)
 
 	kruskalK(dists, distVectorSize, N, k);
 	
-	printDistanceVector(dists, N);
+	// printDistanceVector(dists, N);
 
 	free(dists);
 
-	deleteList(points);
+	Point **pointsVector = linkedListToVector(points, N);
+
+
+
+	// Temporário
+	for (int i = 0; i < N; i++)
+	{
+		freePoint(pointsVector[i]);
+	}
+
+	free(pointsVector);
+	
 
 	fclose(input);
 	fclose(output);

@@ -30,7 +30,7 @@ void pushToList(List *list, Point *element) {
 
 void deleteList(List *list) {
     Item *p = NULL;
-    for (int i = 0; i < list->length; i += 1) {
+    for (int i = 0; i < list->length; i++) {
         if(i == 0){
             p = list->head;
         }
@@ -50,11 +50,30 @@ int listLength(List *list) {
 void printList(List *list){
 
     Item *p = NULL;
-    for (int i = 0; i < list->length; i += 1) {
+    for (int i = 0; i < list->length; i++) {
         if(i == 0){
             p = list->head;
         }
         printPoint(p->element);
         p = p->next;
     }
+}
+
+
+Point** linkedListToVector(List * list, int N){
+    Point **vector = (Point **)malloc(sizeof(Point *) * N);
+
+    Item *p = NULL;
+    for (int i = 0; i < list->length; i++) {
+        if(i == 0){
+            p = list->head;
+        }
+        list->head = list->head->next;
+        vector[i] = p->element;
+        free(p);
+
+        p = list->head;
+    }
+    free(list);
+    return vector;
 }
