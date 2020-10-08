@@ -3,11 +3,7 @@
 #include "point.h"
 #include "linkedlist.h"
 
-typedef struct distCell{
-	Point *p1;
-	Point *p2;
-	double dist;
-} distCell;
+typedef struct distCell distCell;
 
 distCell distBetweenPoints(Point *p1, Point *p2);
 
@@ -22,5 +18,11 @@ distCell *distanceVector(List *pointList);
 void sortDists(distCell *list, int size);
 
 void kruskalK(distCell *distVect, int size, int N, int k);
+
+Point *getPoint1(distCell *distVect);
+
+Point *getPoint2(distCell *distVect);
+
+double getDistance(distCell *distVect);
 
 #endif

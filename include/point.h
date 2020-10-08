@@ -3,17 +3,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct p{
-    char* id;
-    double* mValues;
-    int m;
-    struct p* set;
-}Point;
+typedef struct p Point;
 
 Point *createPoint(char* id, int m, double* mValues);
 
 void freePoint(Point *point);
 
 void printPoint(Point *point);
+
+double *getPointCoordinates(Point *point);
+
+int getPointDimension(Point *point);
+
+char *getPointId(Point *point);
+
+Point *getPointSet(Point *point);
+
+void copyPoint(Point *point1, Point *point2);
 
 #endif

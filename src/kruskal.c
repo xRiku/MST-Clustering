@@ -5,9 +5,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct distCell{
+	Point *p1;
+	Point *p2;
+	double dist;
+};
+
 distCell distBetweenPoints(Point *p1, Point *p2){
     distCell resultCell;
-    double result = EuclideanDist(p1->mValues, p2->mValues, p1->m);
+    // double result = EuclideanDist(p1->mValues, p2->mValues, p1->m);
+    double result = EuclideanDist(getPointCoordinates(p1), getPointCoordinates(p2), getPointDimension(p1));
     resultCell.p1 = p1;
     resultCell.p2 = p2;
     resultCell.dist = result;
@@ -19,7 +26,8 @@ int calcDistN(int N){
 }
 
 void printDistCell(distCell *x){
-    printf("P1: %s Set: %s\nP2: %s Set: %s\n", x->p1->id, UFFind(x->p1)->id, x->p2->id, UFFind(x->p2)->id);
+    // printf("P1: %s Set: %s\nP2: %s Set: %s\n", x->p1->id, UFFind(x->p1)->id, x->p2->id, UFFind(x->p2)->id);
+    printf("P1: %s Set: %s\nP2: %s Set: %s\n", getPointId(x->p1), getPointId(UFFind(x->p1)), getPointId(x->p2), getPointId(UFFind(x->p2)));
     printf("Dist: %lf\n", x->dist);
 }
 

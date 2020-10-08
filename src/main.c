@@ -20,14 +20,14 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 	List *points = fileToPoint(input);
-	int N = points->length;
+	int N = listLength(points);
 
 	if(output == NULL){
 		fprintf(stderr, "Erro ao criar %s\n", argv[1]);
 		exit(1);
 	}
 
-	int distVectorSize = calcDistN(points->length);
+	int distVectorSize = calcDistN(N);
 	
 	distCell *dists = distanceVector(points);
 

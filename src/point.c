@@ -2,6 +2,13 @@
 #include "../include/unionFind.h"
 #include <stdio.h>
 
+struct p{
+    char* id;
+    double* mValues;
+    int m;
+    struct p* set;
+};
+
 Point *createPoint(char* id, int m, double* mValues){
     Point *point = malloc(sizeof(Point));
     point->m = m;
@@ -26,5 +33,25 @@ void printPoint(Point *point){
     }
     printf("Set: %p", UFFind(point));
     printf("\n");
-    
+}
+
+
+double *getPointCoordinates(Point *point) {
+  return point->mValues;
+}
+
+int getPointDimension(Point *point) {
+  return point->m;
+}
+
+char *getPointId(Point *point) {
+  return point->id;
+}
+
+Point *getPointSet(Point *point) {
+  return point->set;
+}
+
+void copyPoint(Point *point1, Point *point2) {
+  point1 = point2;
 }

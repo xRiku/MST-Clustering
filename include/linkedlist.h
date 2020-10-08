@@ -30,4 +30,6 @@ void deleteList(List *);
 
 void printList(List *);
 
+int listLength(List *);
+
 #endif
