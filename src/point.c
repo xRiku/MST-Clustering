@@ -32,7 +32,7 @@ void printPoint(Point *point){
     {
         printf("%lf ", point->mValues[i]);
     }
-    printf("Set: %p", UFFind(point));
+    printf("Set: %s", UFFind(point)->id);
     printf("\n");
 }
 
