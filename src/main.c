@@ -5,6 +5,7 @@
 #include "../include/fileHandler.h"
 #include "../include/linkedlist.h"
 #include "../include/kruskal.h"
+#include "../include/grouping.h"
 
 int main(int argc, char **argv)
 {
@@ -41,7 +42,7 @@ int main(int argc, char **argv)
 
 	Point **pointsVector = linkedListToVector(points);
 
-	//Função de agrupar aqui
+	groupAndPrint(pointsVector, N);
 
 	deletePointVector(pointsVector, N);
 
