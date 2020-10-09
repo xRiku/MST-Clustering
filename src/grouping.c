@@ -11,21 +11,32 @@ int comparePointGroup(const void *x, const void *y){
     char *p1SetId = getPointId(UFFind(p1));
     char *p2SetId = getPointId(UFFind(p2));
 
-    int compIdSet = strcmp(p1SetId, p2SetId); // Essa comparação ta cagando
+    int compIdSet = strcmp(p1SetId, p2SetId);
     if(compIdSet != 0){
         return compIdSet;
     }else{
         char *p1Id = getPointId(p1);
         char *p2Id = getPointId(p2);
-        return strcmp(p1Id, p2Id); // Essa aqui ta certa
+        return strcmp(p1Id, p2Id); 
     }
 }
 
 
 void groupAndPrint(Point **list, int size){
-    // ta dando segfault aqui
     qsort(list, size, (sizeof(list[0])), comparePointGroup);
 
-    // printf("\n%p\n", (Point *)list[1]);
-    printPointVector(list, size);
+    Point *group = UFFind(list[0]);
+    for (int i = 0; i < size; i++){
+        if(group != UFFind(list[i])){
+            printf("\n");
+            group = UFFind(list[i]);
+        }else{
+            if(i != 0){
+                printf(",");
+            }
+        }
+        printf("%s", getPointId(list[i]));
+    }
+    printf("\n");
+    
 }
