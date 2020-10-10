@@ -22,21 +22,21 @@ int comparePointGroup(const void *x, const void *y){
 }
 
 
-void groupAndPrint(Point **list, int size){
+void groupAndPrint(Point **list, int size, FILE *output){
     qsort(list, size, (sizeof(list[0])), comparePointGroup);
 
     Point *group = UFFind(list[0]);
     for (int i = 0; i < size; i++){
         if(group != UFFind(list[i])){
-            printf("\n");
+            fprintf(output, "\n");
             group = UFFind(list[i]);
         }else{
             if(i != 0){
-                printf(",");
+                fprintf(output, ",");
             }
         }
-        printf("%s", getPointId(list[i]));
+        fprintf(output, "%s", getPointId(list[i]));
     }
-    printf("\n");
+    fprintf(output, "\n");
     
 }

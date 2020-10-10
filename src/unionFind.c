@@ -13,5 +13,17 @@ Point* UFFind(Point* p){
 void UFUnion(Point* p, Point* q){
     Point* i = UFFind(p);
     Point* j = UFFind(q);
-    setPointSet(i, j);
+    if(i == j){
+        return;
+    }
+    int iTreeSize = getTreeSize(i);
+    int jTreeSize = getTreeSize(j);
+    int totalSize = iTreeSize + jTreeSize;
+    if(iTreeSize < jTreeSize){
+        setPointSet(i, j);
+        setTreeSize(j, totalSize);
+    }else{
+        setPointSet(j, i);
+        setTreeSize(i, totalSize);
+    }
 }

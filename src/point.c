@@ -7,6 +7,7 @@ struct p{
     char* id;
     double* mValues;
     int m;
+    int treeSize;
     Point *set;
 };
 
@@ -16,6 +17,7 @@ Point *createPoint(char* id, int m, double* mValues){
     point->id = malloc((1 + strlen(id)) * sizeof(char));
     strcpy(point->id, id);
     point->mValues = mValues;
+    point->treeSize = 0;
     point->set = point;
     return point;
 }
@@ -57,6 +59,13 @@ void setPointSet(Point *point, Point *set){
     point->set = set;
 }
 
+int getTreeSize(Point *point){
+    return point->treeSize;
+}
+
+void setTreeSize(Point *point, int size){
+    point->treeSize = size;
+}
 
 int comparePointId(const void *p1, const void *p2){
     char *val1 = ((Point*)p1)->id;

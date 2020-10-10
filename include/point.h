@@ -19,6 +19,10 @@ char *getPointId(Point *point);
 
 Point *getPointSet(Point *point);
 
+int getTreeSize(Point *point);
+
+void setTreeSize(Point *point, int size);
+
 void setPointSet(Point *point, Point *set);
 
 int comparePointId(const void *p1, const void *p2);
