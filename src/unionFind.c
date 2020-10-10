@@ -2,10 +2,9 @@
 
 Point* UFFind(Point* p){
     Point *q = getPointSet(p);
-    Point *qSet = getPointSet(q);
-    while(q != qSet){
-        setPointSet(qSet, getPointSet(qSet));
-        q = qSet;
+    while(q != getPointSet(q)){
+        setPointSet(q, getPointSet(getPointSet(q)));
+        q = getPointSet(q);
     }
     return q;
 }
