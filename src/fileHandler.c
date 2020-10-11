@@ -4,7 +4,7 @@
 
 char *readNewLine(FILE* input){
 	char *line = NULL;
-	long unsigned int n = 0;		
+	long unsigned int n = 0;
 	getline(&line, &n, input);
 	return line;
 }
@@ -34,7 +34,7 @@ List* fileToPoint(FILE* input){
 	char *line = NULL;
 	while (!feof(input)){
 		line = readNewLine(input);
-		if(strcmp(line, "") == 0){ // Chegou no final do arquivo
+		if(feof(input)){ // Chegou no final do arquivo
 			break;
 		}
 		char *id;
