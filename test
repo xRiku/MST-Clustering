@@ -1,0 +1,8 @@
+#!/bin/bash
+
+./trab1 entradas/0.txt 3 saidas/0.txt
+./trab1 entradas/1.txt 2 saidas/1.txt
+./trab1 entradas/2.txt 4 saidas/2.txt
+./trab1 entradas/3.txt 5 saidas/3.txt
+./trab1 entradas/4.txt 5 saidas/4.txt
+./trab1 entradas/5.txt 10 saidas/5.txt
