@@ -46,6 +46,20 @@ void deleteGroupMatrix(char ***matrix, int k){
     free(matrix);
 }
 
+void printGroupMatrix(char ***matrix, int k, int n, FILE *output){
+    for (int i = 0; i < k; i++){
+        for (int j = 0; j < n; j++){
+            if (strcmp(matrix[i][j], "\0") == 0){
+                break;
+            }else if(j != 0){
+                fprintf(output, ",");
+            }
+            fprintf(output, "%s", matrix[i][j]);
+        }
+        fprintf(output, "\n");
+    }
+}
+
 
 void groupAndPrint(Point **list, int size, int k, FILE *output){
     qsort(list, size, (sizeof(list[0])), comparePoint);
@@ -68,15 +82,9 @@ void groupAndPrint(Point **list, int size, int k, FILE *output){
         }
     }
 
-    for (int i = 0; i < k; i++){
-        for (int j = 0; j < size; j++){
-            if (strcmp(groupMatrix[i][j], "\0") == 0){
-                break;
-            }
-            printf("%s ", groupMatrix[i][j]);
-        }
-        printf("\n");
-    }
+    qsort(groupMatrix, k, (sizeof(groupMatrix[0])), compareGroup);
+
+    printGroupMatrix(groupMatrix, k, size, output);
 
     deleteGroupMatrix(groupMatrix, k);
     
