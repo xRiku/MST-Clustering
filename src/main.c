@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 
 	Point **pointsVector = linkedListToVector(points);
 
-	groupAndPrint(pointsVector, N, output);
+	groupAndPrint(pointsVector, N, k, output);
 
 	deletePointVector(pointsVector, N);
 
