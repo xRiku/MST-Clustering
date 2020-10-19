@@ -3,6 +3,6 @@
 #include "linkedlist.h"
 #include "point.h"
 
-void groupAndPrint(Point **list, int size, FILE *output);
+void groupAndPrint(Point **list, int size, int k, FILE *output);
 
 #endif

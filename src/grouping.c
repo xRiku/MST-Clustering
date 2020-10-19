@@ -4,7 +4,7 @@
 #include "../include/grouping.h"
 #include "../include/unionFind.h"
 
-int comparePointGroup(const void *x, const void *y){
+int comparePoint(const void *x, const void *y){
     Point *p1 = *((Point **) x);
     Point *p2 = *((Point **) y);
 
@@ -21,22 +21,55 @@ int comparePointGroup(const void *x, const void *y){
     }
 }
 
+int compareGroup(const void *x, const void *y){
+    char **g1 = *((char ***) x);
+    char **g2 = *((char ***) y);
+    
+    return strcmp(g1[0], g2[0]);
+}
 
-void groupAndPrint(Point **list, int size, FILE *output){
-    qsort(list, size, (sizeof(list[0])), comparePointGroup);
+char ***newGroupMatrix(int k, int n){
+    char ***groupMatrix = malloc(sizeof(char **) * k);
+
+    for (int i = 0; i < k; i++){
+        groupMatrix[i] = malloc(sizeof(char *) * n);
+    }
+
+    return groupMatrix;
+}
+
+void deleteGroupMatrix(char ***matrix, int k){
+    for (int i = 0; i < k; i++){
+        free(matrix[i]);
+    }
+
+    free(matrix);
+}
+
+
+void groupAndPrint(Point **list, int size, int k, FILE *output){
+    qsort(list, size, (sizeof(list[0])), comparePoint);
+
+    char ***groupMatrix = newGroupMatrix(k, size);
 
     Point *group = UFFind(list[0]);
-    for (int i = 0; i < size; i++){
+    for (int i = 0, c = 0, groupCnt = 0; i < size; i++){
         if(group != UFFind(list[i])){
-            fprintf(output, "\n");
+            groupMatrix[groupCnt][c] = "";
+            groupCnt++;
+            c = 0;
             group = UFFind(list[i]);
         }else{
-            if(i != 0){
-                fprintf(output, ",");
-            }
+            groupMatrix[groupCnt][c] = getPointId(list[i]);
+            c++;
         }
-        fprintf(output, "%s", getPointId(list[i]));
     }
-    fprintf(output, "\n");
+
+    for (int i = 0; i < k; i++){
+        for (int j = 0; i < size; i++){
+            printf("%s ", groupMatrix[i][j]);
+        }
+        printf("\n");
+    }
     
 }
