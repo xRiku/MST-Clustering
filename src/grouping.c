@@ -55,21 +55,29 @@ void groupAndPrint(Point **list, int size, int k, FILE *output){
     Point *group = UFFind(list[0]);
     for (int i = 0, c = 0, groupCnt = 0; i < size; i++){
         if(group != UFFind(list[i])){
-            groupMatrix[groupCnt][c] = "";
+            groupMatrix[groupCnt][c] = "\0";
             groupCnt++;
             c = 0;
             group = UFFind(list[i]);
-        }else{
-            groupMatrix[groupCnt][c] = getPointId(list[i]);
-            c++;
+        }
+        groupMatrix[groupCnt][c] = getPointId(list[i]);
+        c++;
+
+        if(i == (size-1)){
+            groupMatrix[groupCnt][c] = "\0";
         }
     }
 
     for (int i = 0; i < k; i++){
-        for (int j = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            if (strcmp(groupMatrix[i][j], "\0") == 0){
+                break;
+            }
             printf("%s ", groupMatrix[i][j]);
         }
         printf("\n");
     }
+
+    deleteGroupMatrix(groupMatrix, k);
     
 }
