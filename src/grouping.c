@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../include/grouping.h"
 #include "../include/unionFind.h"
 
@@ -61,7 +62,7 @@ void printGroupMatrix(char ***matrix, int k, int n, FILE *output){
 }
 
 
-void groupAndPrint(Point **list, int size, int k, FILE *output){
+void groupAndPrint(Point **list, int size, int k, FILE *output, clock_t *time){
     qsort(list, size, (sizeof(list[0])), comparePoint);
 
     char ***groupMatrix = newGroupMatrix(k, size);
@@ -84,8 +85,10 @@ void groupAndPrint(Point **list, int size, int k, FILE *output){
 
     qsort(groupMatrix, k, (sizeof(groupMatrix[0])), compareGroup);
 
+    /* Tempo calculado para escrita do arquivo de saída */
+    *time = clock();
     printGroupMatrix(groupMatrix, k, size, output);
-
+    *time = clock() - *time;
     deleteGroupMatrix(groupMatrix, k);
     
 }
