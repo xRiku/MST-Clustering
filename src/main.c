@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 	Point **pointsVector = linkedListToVector(points);
 
 	/* Tempos para agrupamento e escrita (dentro da função). */	
-	groupAndPrint(pointsVector, N, k, output, &time[5]);
+	groupAndPrint(pointsVector, N, k, output, time);
 
 
 	/* Conversão de clock_t para double */
@@ -66,12 +66,18 @@ int main(int argc, char **argv)
 		timeConverted[i] = (double) time[i]/CLOCKS_PER_SEC;
 	}
 	free(time);
-	printf("Tempo de leitura: \t\t\t%.6f\n", timeConverted[0]);
-	printf("Tempo de calculo de distancias:\t\t%.6f\n", timeConverted[1]);
-	printf("Tempo de ordenação das distancias: \t%.6f\n", timeConverted[2]);
-	printf("Tempo de obtenção da MST: \t\t%.6f\n", timeConverted[3]);
-	// printf("Tempo de leitura: %.6f\n", timeConverted[4]);
-	printf("Tempo de escrita: \t\t\t%.6f\n", timeConverted[5]);
+	// printf("Tempo de leitura: \t\t\t%.6f\n", timeConverted[0]);
+	printf("%.6f\n", timeConverted[0]);
+	// printf("Tempo de calculo de distancias:\t\t%.6f\n", timeConverted[1]);
+	printf("%.6f\n", timeConverted[1]);
+	// printf("Tempo de ordenação das distancias: \t%.6f\n", timeConverted[2]);
+	printf("%.6f\n", timeConverted[2]);
+	// printf("Tempo de obtenção da MST: \t\t%.6f\n", timeConverted[3]);
+	printf("%.6f\n", timeConverted[3]);
+	// printf("Tempo de agrupamento: \t\t\t%.6f\n", timeConverted[4]);
+	printf("%.6f\n", timeConverted[4]);
+	// printf("Tempo de escrita: \t\t\t%.6f\n", timeConverted[5]);
+	printf("%.6f", timeConverted[5]);
 	free(timeConverted);
 	deletePointVector(pointsVector, N);
 
