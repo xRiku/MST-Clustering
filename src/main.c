@@ -51,8 +51,6 @@ int main(int argc, char **argv)
 	kruskalK(dists, distVectorSize, N, k);
 	time[3] = clock() - time[3];
 	
-	// printDistanceVector(dists, N);
-
 	free(dists);
 
 	Point **pointsVector = linkedListToVector(points);

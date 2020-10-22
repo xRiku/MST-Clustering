@@ -13,7 +13,6 @@ struct distCell{
 
 distCell distBetweenPoints(Point *p1, Point *p2){
     distCell resultCell;
-    // double result = EuclideanDist(p1->mValues, p2->mValues, p1->m);
     double result = EuclideanDist(getPointCoordinates(p1), getPointCoordinates(p2), getPointDimension(p1));
     resultCell.p1 = p1;
     resultCell.p2 = p2;
