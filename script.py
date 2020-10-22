@@ -60,6 +60,6 @@ medias = np.array([media3,media4,media5])
 df = pd.DataFrame(medias)
 df.index = ["Entrada 3", "Entrada 4", "Entrada 5"]
 df.columns = ["Leitura", "Distâncias", "Ordenação", "MST", "Agrupamento", "Escrita"]
-print("\\begin{table}[]", "\centering", sep=("\n"))
+print("\\begin{table}[h]", "\centering", sep=("\n"))
 print(df.to_latex())
 print("\end{table}")
