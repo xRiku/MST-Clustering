@@ -24,8 +24,15 @@ Point *createPoint(char* id, int m, double* mValues){
 
 void freePoint(Point *point){
     free(point->id);
-    // free(point->mValues);
+    if(point->mValues != NULL){
+        freePointCoord(point);
+    }
     free(point);
+}
+
+void freePointCoord(Point *point){
+    free(point->mValues);
+    point->mValues = NULL;
 }
 
 void printPoint(Point *point){

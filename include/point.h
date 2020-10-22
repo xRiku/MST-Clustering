@@ -9,6 +9,8 @@ Point *createPoint(char* id, int m, double* mValues);
 
 void freePoint(Point *point);
 
+void freePointCoord(Point *point);
+
 void printPoint(Point *point);
 
 double *getPointCoordinates(Point *point);
