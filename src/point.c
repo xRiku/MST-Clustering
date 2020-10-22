@@ -24,7 +24,7 @@ Point *createPoint(char* id, int m, double* mValues){
 
 void freePoint(Point *point){
     free(point->id);
-    free(point->mValues);
+    // free(point->mValues);
     free(point);
 }
 
