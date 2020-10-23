@@ -1,65 +1,95 @@
 #!/usr/bin/env python3
+# Código mescla entre script feito por Philipe deste grupo e Atílio Antônio Dadalto de outro grupo
 import os
+import re
 import numpy as np
 import pandas as pd
 import subprocess
-
+import seaborn as sns
+import matplotlib as plt
 
 # Remove a notação científica
 np.set_printoptions(suppress=True)
+sns.set_theme(style="darkgrid")
 
-entrada3 = np.array([])
-entrada4 = np.array([])
-entrada5 = np.array([])
-i = 0
-while i < 10:
-    aux = subprocess.run(["./trab1", "./entradas/3.txt", "5", "./saidas/3.txt"], stdout=subprocess.PIPE, universal_newlines=True)
-    y = aux.stdout
-    y = y.split("\n")
-    y = [float(j) for j in y]
-    if i == 0:
-        entrada3 = np.array(y)
-    else:
-        entrada3 = np.vstack((entrada3, y))
-    i += 1
 
-i = 0
-while i < 10:
-    aux = subprocess.run(["./trab1", "./entradas/4.txt", "5", "./saidas/4.txt"], stdout=subprocess.PIPE, universal_newlines=True)
-    y = aux.stdout
-    y = y.split("\n")
-    y = [float(j) for j in y]
-    if i == 0:
-        entrada4 = np.array(y)
-    else:
-        entrada4 = np.vstack((entrada4, y))
-    i += 1
+N_INPUT_FILES = 5
+N_ITERATIONS = 20
 
-i = 0
-while i < 10:
-    aux = subprocess.run(["./trab1", "./entradas/5.txt", "10", "./saidas/5.txt"], stdout=subprocess.PIPE, universal_newlines=True)
-    y = aux.stdout
-    y = y.split("\n")
-    y = [float(j) for j in y]
-    if i == 0:
-        entrada5 = np.array(y)
-    else:
-        entrada5 = np.vstack((entrada5, y))
-    i += 1
+entradas = []
+entradasPercent = []
+for inputFile in range(0, N_INPUT_FILES):
+    entradas.append(np.array([]))
+    entradasPercent.append(np.array([]))
 
-media3 = entrada3.mean(axis=0)
-media4 = entrada4.mean(axis=0)
-media5 = entrada5.mean(axis=0)
+k = {1: 2, 2: 4, 3: 5, 4: 5, 5: 10}
 
-# print(f"Médias entrada 3: {media3}")
-# print(f"Médias entrada 4: {media4}")
-# print(f"Médias entrada 5: {media5}")
+for i in range(N_ITERATIONS):
+    for inputFile in range(1, N_INPUT_FILES + 1):
+        # print(f"Testando {inputFile}.txt pela {i + 1} vez")
 
-medias = np.array([media3,media4,media5])
+        aux = subprocess.run(
+            [
+                "./trab1",
+                f"./entradas/{inputFile}.txt",
+                f"{k[inputFile]}",
+                f"./saidas/{inputFile}.txt",
+            ],
+            stdout=subprocess.PIPE,
+            universal_newlines=True,
+        )
+        y = aux.stdout
+
+        floats = re.findall("\d+\.\d+", y)
+        floats = [float(string) for string in floats]
+        floatsPercent = floats[:]
+        floatsPercent[0:-1] = [100*n/floatsPercent[-1] for n in floatsPercent[0:-1]]
+
+        if i == 0:
+            entradas[inputFile - 1] = np.array(floats)
+            entradasPercent[inputFile - 1] = np.array(floatsPercent)
+        else:
+            entradas[inputFile - 1] = np.vstack((entradas[inputFile - 1], floats))
+            entradasPercent[inputFile - 1] = np.vstack((entradasPercent[inputFile - 1], floatsPercent))
+
+medias = []
+mediasPercent = []
+for inputFile in range(0, N_INPUT_FILES):
+    medias.append(entradas[inputFile].mean(axis=0)[0:-1])
+    mediasPercent.append(entradasPercent[inputFile].mean(axis=0)[0:-1])
+
+mediasNpArray = np.array(medias)
+mediasNpArrayPercent = np.array(mediasPercent)
 # print(medias)
-df = pd.DataFrame(medias)
-df.index = ["Entrada 3", "Entrada 4", "Entrada 5"]
+df = pd.DataFrame(mediasNpArray)
+dfPercent = pd.DataFrame(mediasNpArrayPercent)
+
+stringsEntrada = []
+for inputFile in range(1, N_INPUT_FILES + 1):
+    stringsEntrada.append(f"Entrada {inputFile}")
+df.index = stringsEntrada
+dfPercent.index = stringsEntrada
+
 df.columns = ["Leitura", "Distâncias", "Ordenação", "MST", "Agrupamento", "Escrita"]
+dfPercent.columns = ["Leitura", "Distâncias", "Ordenação", "MST", "Agrupamento", "Escrita"]
+# print(df)
+# decimals = pd.Series([2, 2, 2, 2, 2, 2], index=["Leitura", "Distâncias", "Ordenação", "MST", "Agrupamento", "Escrita"])
+
+dfPercent = dfPercent.round(2)
+# print()
+
+# print((dfPercent.T)[2])
+# df_basic = df[['Ordenação']]
+# df_basic["Distâncias"] = df["Distâncias"]
+# df_basic["N"] = [50, 100, 1000, 2500, 5000]
+# print(df_basic)
+# g = sns.relplot(x="N", y="Ordenação", kind='line',data=df_basic)
+# g1 = sns.relplot(x="N", y="Distâncias", kind='line',data=df_basic)
+# g1 = g.twinx()
+# g.fig.autofmt_xdate()
+# g1.fig.autofmt_xdate()
+# plt.pyplot.show()
+
 print("\\begin{table}[h]", "\centering", sep=("\n"))
-print(df.to_latex())
+print(dfPercent.to_latex())
 print("\end{table}")
