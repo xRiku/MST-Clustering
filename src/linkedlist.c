@@ -35,7 +35,7 @@ void deleteList(List *list) {
             p = list->head;
         }
         list->head = list->head->next;
-        freePoint(p->element); // Talvez precise ou não dar free nos pontos. Anyway, qualquer coisa ta aqui.
+        freePoint(p->element);
         free(p);
 
         p = list->head;

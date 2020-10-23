@@ -11,7 +11,6 @@ char *readNewLine(FILE* input){
 
 int countPointDimension(FILE *input){
 	char *line = readNewLine(input);
-	// printf("%s", line);
 	int m = 0;
 	strtok(line, ","); // Ignorar o identificador
 	while(strtok(NULL, ",") != NULL){
