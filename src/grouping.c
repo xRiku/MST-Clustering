@@ -108,13 +108,9 @@ void printGroupMatrix(char ***matrix, int k, int n, FILE *output){
  * @param size Tamanho do vetor de pontos
  * @param k Quantidade de grupos
  * @param output Arquivo a ser escrito
- * @param time 
  */
-void groupAndPrint(Point **list, int size, int k, FILE *output, clock_t *time){
-    /* Tempo calculado para agrupamento */
-    time[4] = clock();
+void groupAndPrint(Point **list, int size, int k, FILE *output){
     qsort(list, size, (sizeof(list[0])), comparePoint);
-
 
     char ***groupMatrix = newGroupMatrix(k, size);
 
@@ -135,12 +131,8 @@ void groupAndPrint(Point **list, int size, int k, FILE *output, clock_t *time){
     }
 
     qsort(groupMatrix, k, (sizeof(groupMatrix[0])), compareGroup);
-    time[4] = clock() - time[4];
 
-    /* Tempo calculado para escrita do arquivo de saída */
-    time[5] = clock();
     printGroupMatrix(groupMatrix, k, size, output);
-    time[5] = clock() - time[5];
     deleteGroupMatrix(groupMatrix, k);
-    
+
 }

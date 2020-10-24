@@ -4,6 +4,6 @@
 #include "point.h"
 #include <time.h>
 
-void groupAndPrint(Point **list, int size, int k, FILE *output, clock_t *time);
+void groupAndPrint(Point **list, int size, int k, FILE *output);
 
 #endif
