@@ -5,6 +5,15 @@
 #include "../include/grouping.h"
 #include "../include/unionFind.h"
 
+/**
+ * @brief Função comparadora pra ser usada no qsort().
+ * Compara dois pontos pelo identificador de suas componentes conexas.
+ * Caso sejam iguais, compara pelos seus identificadores.
+ * 
+ * @param x 
+ * @param y 
+ * @return int 
+ */
 int comparePoint(const void *x, const void *y){
     Point *p1 = *((Point **) x);
     Point *p2 = *((Point **) y);
@@ -22,6 +31,14 @@ int comparePoint(const void *x, const void *y){
     }
 }
 
+/**
+ * @brief Função comparadora pra ser usada no qsort().
+ * Compara 2 vetores de strings através do primeiro elemento de cada vetor.
+ * 
+ * @param x 
+ * @param y 
+ * @return int 
+ */
 int compareGroup(const void *x, const void *y){
     char **g1 = *((char ***) x);
     char **g2 = *((char ***) y);
@@ -29,6 +46,13 @@ int compareGroup(const void *x, const void *y){
     return strcmp(g1[0], g2[0]);
 }
 
+/**
+ * @brief Aloca e retorna uma matriz de strings (não alocadas) de tamanho (k x n).
+ * 
+ * @param k Número de linhas
+ * @param n Número de colunas
+ * @return char*** 
+ */
 char ***newGroupMatrix(int k, int n){
     char ***groupMatrix = malloc(sizeof(char **) * k);
 
@@ -39,6 +63,12 @@ char ***newGroupMatrix(int k, int n){
     return groupMatrix;
 }
 
+/**
+ * @brief Libera uma matriz de k linhas
+ * 
+ * @param matrix 
+ * @param k 
+ */
 void deleteGroupMatrix(char ***matrix, int k){
     for (int i = 0; i < k; i++){
         free(matrix[i]);
@@ -47,6 +77,14 @@ void deleteGroupMatrix(char ***matrix, int k){
     free(matrix);
 }
 
+/**
+ * @brief Escreve num arquivo as strings de uma matriz com k linhas e no máximo n colunas em cada linha
+ * 
+ * @param matrix 
+ * @param k número de linhas
+ * @param n número de colunas
+ * @param output 
+ */
 void printGroupMatrix(char ***matrix, int k, int n, FILE *output){
     for (int i = 0; i < k; i++){
         for (int j = 0; j < n; j++){
@@ -62,6 +100,16 @@ void printGroupMatrix(char ***matrix, int k, int n, FILE *output){
 }
 
 
+/**
+ * @brief Organiza os pontos em uma matriz onde cada linha corresponde a um grupo. 
+ * Ao final imprime a matriz no arquivo e libera o conteúdo da mesma.
+ * 
+ * @param list Vetor de pontos
+ * @param size Tamanho do vetor de pontos
+ * @param k Quantidade de grupos
+ * @param output Arquivo a ser escrito
+ * @param time 
+ */
 void groupAndPrint(Point **list, int size, int k, FILE *output, clock_t *time){
     /* Tempo calculado para agrupamento */
     time[4] = clock();

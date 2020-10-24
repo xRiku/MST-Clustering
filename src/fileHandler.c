@@ -2,6 +2,12 @@
 #include <strings.h>
 #include "../include/fileHandler.h"
 
+/**
+ * @brief Lê uma nova linha de um arquivo, retornando em um vetor de caracteres
+ * 
+ * @param input Arquivo a ser lido
+ * @return char* Vetor de caracteres resultante
+ */
 char *readNewLine(FILE* input){
 	char *line = NULL;
 	long unsigned int n = 0;
@@ -9,6 +15,12 @@ char *readNewLine(FILE* input){
 	return line;
 }
 
+/**
+ * @brief Conta a dimensão de um ponto dado em um arquivo
+ * 
+ * @param input Arquivo a ser lido
+ * @return int 
+ */
 int countPointDimension(FILE *input){
 	char *line = readNewLine(input);
 	int m = 0;
@@ -22,7 +34,13 @@ int countPointDimension(FILE *input){
 	return m;
 }
 
-
+/**
+ * @brief Percorre um arquivo contendo informações de pontos,
+ *  convertendo seu conteúdo em uma lista encadeada de ponteiros para struct Ponto
+ * 
+ * @param input Arquivo a ser lido
+ * @return List*
+ */
 List* fileToPoint(FILE* input){
 	rewind(input); // just in case
 

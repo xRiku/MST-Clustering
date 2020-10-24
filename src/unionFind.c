@@ -1,5 +1,11 @@
 #include "../include/unionFind.h"
 
+/**
+ * @brief Retorna a componente conexa, dada por outro ponto, em que o ponto se encontra.
+ * 
+ * @param p 
+ * @return Point* 
+ */
 Point* UFFind(Point* p){
     Point *q = getPointSet(p);
     while(q != getPointSet(q)){
@@ -9,6 +15,12 @@ Point* UFFind(Point* p){
     return q;
 }
 
+/**
+ * @brief Une 2 pontos usando o algoritmo "Weighted Quick-Union with Path Compression"
+ * 
+ * @param p 
+ * @param q 
+ */
 void UFUnion(Point* p, Point* q){
     Point* i = UFFind(p);
     Point* j = UFFind(q);
